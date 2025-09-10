@@ -1,0 +1,27 @@
+I am using Harness Lightspeed.  
+I want to define a task YAML file that prepares Helm charts and deploys multiple releases dynamically.
+
+Requirements:
+- Task should run in two steps:
+  1. Prepare Helm Charts:
+     - Read `release_list` from `helm/values.yaml` using `yq`.
+     - For each release, create a folder `<release>/helm/`.
+     - Copy all common Helm chart files from the `helm/` directory:
+       - `Chart.yaml`, `values.yaml`, and other root files.
+       - Entire `templates/` folder into `<release>/helm/templates/`.
+     - If `<env>-values.yaml` exists (where `<env>` is from variable `HARNESS_ENV`), copy it into `<release>/helm/values.yaml`.  
+       Otherwise, use `helm/values.yaml`.
+  2. Deploy Helm Releases:
+     - Loop through all releases from `release_list`.
+     - Run:
+       ```
+       helm upgrade --install <release> <release>/helm \
+         -f <release>/helm/values.yaml \
+         --namespace ${HARNESS_ENV} \
+         --create-namespace
+       ```
+
+- Use `alpine/helm:3.12.3` as the container image.
+- Use `bash` shell and install `yq` inside the container if needed.
+- Make sure both steps run inside the same task file.
+- The task file should follow Harness Lightspeed task definition format (`kind: task`, `spec.steps` etc).
