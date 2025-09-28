@@ -1,0 +1,116 @@
+Got it ✅ — you want the prompt rewritten for GitHub Copilot (so it can directly scaffold your Next.js app).
+Here’s a clean, concise Copilot-friendly version of your requirements, structured as coding instructions:
+
+
+---
+
+Copilot Prompt
+
+Build a Next.js v15.3.3 + React + TypeScript app with:
+
+UI library: shadcn/ui (for header, sidebar, cards, modals, dropdowns, toasts)
+
+Data fetching: TanStack Query
+
+Tables: TanStack Table
+
+Animations: Framer Motion
+
+API calls: Axios (use mock endpoints for now, but code should call APIs via React Query hooks)
+
+
+Layout
+
+Create a reusable Header with logo (left), theme toggle + profile dropdown (right).
+
+Create a Collapsible Sidebar (icons visible when collapsed) with menus: Dashboard, Applications, OpenShift, Secrets, Configurations, Logs, Monitoring, Audit.
+
+Use a main layout component that includes header + sidebar.
+
+
+Dashboard Page
+
+Show status cards (OSE Pods, Memory, Repositories, CICD). Fetch data via mock APIs.
+
+Add a CSI filter dropdown.
+
+Show a microservices table with columns:
+
+Name, Type, CSI ID, Environments, Connections (DB, Solace, Kafka, etc.)
+
+
+Add a “Create Microservice” button → opens modal, calls mock POST API.
+
+Each row has View/Edit → navigates to detail page.
+
+
+Microservice Detail Page
+
+Fetch data via mock API by ID.
+
+Show sections:
+
+Basic details
+
+Environments list
+
+OpenShift Pod details
+
+ConfigMap details
+
+Connections (Spring, Kafka, DB per cluster) with CRUD (use mock APIs).
+
+
+
+Configuration Manager
+
+Add a Cluster selection dropdown (mock API provides list).
+
+On cluster select → fetch configs for that cluster (mock API).
+
+Allow CRUD for cluster configs (React Query mutations).
+
+Show Preview panel:
+
+Cluster config (from API)
+
+Combined config across clusters (mock API merge)
+
+YAML syntax highlighting.
+
+
+Add Export YAML button → simulate API download.
+
+
+Additional
+
+Use shadcn/ui toasts for success/error.
+
+Add global search bar for microservices.
+
+Add skeleton loaders for API fetching.
+
+Make responsive/mobile-friendly.
+
+
+
+---
+
+👉 This way, Copilot will generate a scaffold with:
+
+Layout (Header + Sidebar)
+
+Dashboard page (cards + table)
+
+Microservice details page
+
+Config Manager page (cluster dropdown + YAML preview + export)
+
+API service layer (mock Axios endpoints + React Query hooks)
+
+
+
+---
+
+Would you like me to trim this into a single “Copilot instruction block” (shorter, inline style) so you can paste it directly into your editor while scaffolding?
+
